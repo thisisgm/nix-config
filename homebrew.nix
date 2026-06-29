@@ -9,10 +9,9 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # STAGED: start "none" (nothing removed) for the first switches. Once you've
-      # verified everything migrated, flip to "zap" for true declarative pruning
-      # (removes any cask/formula not listed below). Do NOT start on "zap".
-      cleanup = "none";
+      # Declarative pruning: removes any cask/formula not listed below (verified
+      # migration complete + brew already retired, so safe to enforce now).
+      cleanup = "zap";
     };
 
     casks = [

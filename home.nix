@@ -117,6 +117,8 @@
       user.name = "Gianmarco Morales";
       user.email = "gianmarcomorales@icloud.com";
       init.defaultBranch = "main";
+      # local verification of ssh-signed commits (GitHub verifies independently)
+      gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.config/git/allowed_signers";
 
       # gh as credential helper. PATH-relative (NOT /opt/homebrew/...) so it
       # survives the brew->nix move. Empty first entry resets inherited helpers.
@@ -166,6 +168,10 @@
 
   xdg.configFile."fastfetch/config.jsonc".source =
     ./dotfiles/fastfetch/config.jsonc;
+
+  # allowed-signers for verifying your own ssh-signed commits locally
+  home.file.".config/git/allowed_signers".text =
+    "gianmarcomorales@icloud.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzFQh0nnBHOEBWajMx0+etRRivHNsa+B0LJ6BTaZzRM\n";
 
   # ── activation: ensure runtime dirs exist ─────────────────────────────────
   home.activation.mkRuntimeDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
