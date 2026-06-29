@@ -1,22 +1,21 @@
-# macbookair nix-config — run from ~/nix-config
-# `just` with no args lists recipes.
+# macbookair nix-config — run from ~/nix-config; `just` lists recipes.
 
 default:
     @just --list
 
-# rebuild + activate (nh shows a diff + asks before applying)
+# apply config changes (nh shows a diff + asks first)
 switch:
     nh darwin switch .
 
-# update flake inputs, then rebuild (nh: diff + confirm)
+# bump flake.lock to latest, then switch
 update:
     nh darwin switch . --update
 
-# build only — validate without activating
+# build without activating
 check:
     nh darwin build .
 
-# roll back to the previous generation
+# revert to the previous generation
 rollback:
     sudo darwin-rebuild --rollback
 
@@ -24,13 +23,8 @@ rollback:
 generations:
     darwin-rebuild --list-generations
 
-# pull file-secrets from 1Password (needs `op` signed in + biometric).
-# Adjust the op:// reference to match your vault/item.
-secrets:
-    @mkdir -p ~/.config/<app>
+# example: pull a file-secret from 1Password (edit the op:// ref + output path)
+secret:
     op read "op://Private/<item>/<field>" > ~/.config/<app>/<file>
-    @chmod 600 ~/.config/<app>/<file>
-    @echo "secrets pulled"
 
-# NOTE: garbage collection is automatic (Determinate Nixd, disk-pressure-based).
-# Force a manual GC only if needed:  nh clean all --keep 5 --keep-since 7d
+# GC is automatic (Determinate); force one with: nh clean all --keep 5 --keep-since 7d

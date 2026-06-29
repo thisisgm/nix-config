@@ -2,7 +2,7 @@
   description = "macbookair — nix-darwin + home-manager system config";
 
   inputs = {
-    # Latest stable, macOS-tested channel. Bump these three together each release.
+    # Stable macOS-tested channels; bump the three together each release.
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
@@ -11,7 +11,7 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Determinate Nix nix-darwin module: manages the daemon + caches + GC declaratively.
+    # Determinate Nix module: manages the daemon, caches, and GC.
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
   };
 

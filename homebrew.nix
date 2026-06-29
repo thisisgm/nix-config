@@ -1,18 +1,13 @@
 { ... }:
 {
-  # GUI apps + Mac App Store apps. nix-darwin drives Homebrew/mas; the *list* is
-  # declarative here, brew/mas do the install. Requires Homebrew already installed
-  # and (for masApps) being signed into the App Store. See README.
+  # GUI + Mac App Store apps; the list is declarative, brew/mas do the install.
   homebrew = {
     enable = true;
 
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # "zap" prunes anything NOT declared here — INCLUDING Mac App Store apps
-      # not in masApps (it DELETES them). Rule: every app you keep must be
-      # declared (cask in `casks`, App Store app in `masApps`). Add any new
-      # App Store app to masApps BEFORE the next switch, or zap will remove it.
+      # "zap" deletes anything undeclared (incl. App Store apps not in masApps) — declare every app you keep.
       cleanup = "zap";
     };
 
@@ -25,7 +20,7 @@
       "claude"
       "proton-mail"
       "ghostty"
-      "tailscale-app"   # GUI app cask (`tailscale` is now the CLI formula)
+      "tailscale-app"   # GUI cask (`tailscale` is the CLI formula)
       "adguard"
       "cyberduck"
       "keka"
@@ -33,7 +28,7 @@
       "1password-cli"
     ];
 
-    # name = numeric App Store ID (verified via mdls). Curated subset only.
+    # App Store apps (name = numeric ID).
     masApps = {
       "Infuse" = 1136220934;
       "Amperfy" = 1530145038;
