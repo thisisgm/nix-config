@@ -9,9 +9,10 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # Declarative pruning: removes any cask/formula not listed below (verified
-      # migration complete + brew already retired, so safe to enforce now).
-      cleanup = "zap";
+      # IMPORTANT: keep "none". "zap"/"uninstall" also prune Mac App Store apps
+      # not in masApps — which DELETES unmanaged Store apps you want to keep
+      # (Termius, Xcode, etc.). "none" = additive, never removes anything.
+      cleanup = "none";
     };
 
     casks = [
