@@ -9,10 +9,11 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # IMPORTANT: keep "none". "zap"/"uninstall" also prune Mac App Store apps
-      # not in masApps — which DELETES unmanaged Store apps you want to keep
-      # (Termius, Xcode, etc.). "none" = additive, never removes anything.
-      cleanup = "none";
+      # "zap" prunes anything NOT declared here — INCLUDING Mac App Store apps
+      # not in masApps (it DELETES them). Rule: every app you keep must be
+      # declared (cask in `casks`, App Store app in `masApps`). Add any new
+      # App Store app to masApps BEFORE the next switch, or zap will remove it.
+      cleanup = "zap";
     };
 
     casks = [
@@ -40,6 +41,7 @@
       "Keynote" = 409183694;
       "Numbers" = 409203825;
       "Pages" = 409201541;
+      "Termius" = 1176074088;
     };
   };
 }
