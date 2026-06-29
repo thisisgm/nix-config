@@ -1,4 +1,4 @@
-# macbookair — declarative macOS config
+# macbookair: declarative macOS config
 
 My entire Mac, reproducible from one repo: **nix-darwin + home-manager + flakes** on
 **Determinate Nix**, pinned to stable **26.05**. Nix owns CLI tools, dotfiles, and macOS
@@ -6,11 +6,11 @@ settings; Homebrew (driven by nix-darwin) installs GUI casks + Mac App Store app
 1Password handles secrets.
 
 ## Highlights
-- **One command rebuilds the machine** — `nh darwin switch` (diff + confirm before activating).
-- **Secrets stay out of git** — 1Password SSH agent + `op`; the repo holds only public keys and `op://` references, so it's safe to publish.
+- **One command rebuilds the machine:** `nh darwin switch` (diff + confirm before activating).
+- **Secrets stay out of git:** 1Password SSH agent + `op`; the repo holds only public keys and `op://` references, so it's safe to publish.
 - **Signed, verified commits** with the 1Password SSH key.
-- **Declarative macOS** — Dock, Finder, keyboard, fonts, screenshots, Touch-ID-for-sudo (works in tmux).
-- **Controlled updates** — versions pinned in `flake.lock`; a weekly GitHub Action PRs lockfile bumps; GC and Nix upgrades are automatic (Determinate).
+- **Declarative macOS:** Dock, Finder, keyboard, fonts, screenshots, Touch-ID-for-sudo (works in tmux).
+- **Controlled updates:** versions pinned in `flake.lock`; a weekly GitHub Action PRs lockfile bumps; GC and Nix upgrades are automatic (Determinate).
 
 ## Layout
 | File | Owns |
@@ -40,5 +40,5 @@ just rollback  # revert to the previous generation
 
 ## Notes
 - **Not in nix (by design):** secrets (1Password), nvim config (LazyVim, kept writable), a few App Store apps.
-- **`cleanup = "zap"`** prunes anything undeclared — every app you keep must be listed in `casks` or `masApps`, or a switch removes it.
+- **`cleanup = "zap"`** prunes anything undeclared; every app you keep must be listed in `casks` or `masApps`, or a switch removes it.
 - A broken config fails at *build*, before activation; `just rollback` + Time Machine are the safety nets; Homebrew apps survive a full Nix uninstall.

@@ -1,4 +1,4 @@
-# macbookair nix-config — run from ~/nix-config; `just` lists recipes.
+# macbookair nix-config: run from ~/nix-config; `just` lists recipes.
 
 default:
     @just --list

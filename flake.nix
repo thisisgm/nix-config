@@ -1,5 +1,5 @@
 {
-  description = "macbookair — nix-darwin + home-manager system config";
+  description = "macbookair: nix-darwin + home-manager system config";
 
   inputs = {
     # Stable macOS-tested channels; bump the three together each release.

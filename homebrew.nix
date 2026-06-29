@@ -7,7 +7,7 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # "zap" deletes anything undeclared (incl. App Store apps not in masApps) — declare every app you keep.
+      # "zap" deletes anything undeclared (incl. App Store apps not in masApps); declare every app you keep.
       cleanup = "zap";
     };
 
