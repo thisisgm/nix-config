@@ -1,0 +1,12 @@
+# nix build results
+result
+result-*
+
+# editor / OS cruft
+.DS_Store
+
+# never commit machine-local secrets or host configs.
+# (these live OUTSIDE this repo — ~/.ssh/config.local etc. — listed here as a guard
+#  in case anything is ever copied in.)
+*.local
+config.local

@@ -1,0 +1,80 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Blank line before each prompt = breathing room
+add_newline = true
+
+# pyenv shims are slow; default 500ms trips a WARN
+command_timeout = 1500
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nodejs$bun$rust$golang$python\
+$cmd_duration\
+$character"""
+
+# Time floats on the right edge of the first line
+right_format = "$time"
+
+[time]
+disabled = false
+time_format = "%I:%M %p"
+style = "#565f89"
+format = "[$time]($style)"
+
+[directory]
+style = "bold #7aa2f7"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " "
+read_only_style = "#f7768e"
+
+[git_branch]
+symbol = " "
+style = "#bb9af7"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "#e0af68"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+
+[character]
+success_symbol = "[❯](bold #9ece6a)"
+error_symbol = "[❯](bold #f7768e)"
+vimcmd_symbol = "[❮](bold #9ece6a)"
+
+[nodejs]
+symbol = " "
+style = "#9ece6a"
+format = "[$symbol($version )]($style)"
+
+[bun]
+symbol = " "
+style = "#e0af68"
+format = "[$symbol($version )]($style)"
+
+[rust]
+symbol = " "
+style = "#f7768e"
+format = "[$symbol($version )]($style)"
+
+[golang]
+symbol = " "
+style = "#7dcfff"
+format = "[$symbol($version )]($style)"
+
+[python]
+symbol = " "
+style = "#e0af68"
+format = "[$symbol($version )]($style)"
+# Only show in real Python dirs (no .python-version, so pyenv-global stops triggering it everywhere)
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", "setup.py", "tox.ini", ".venv"]
+detect_folders = [".venv"]
+
+[cmd_duration]
+min_time = 2000
+style = "#565f89"
+format = "[took $duration]($style) "
