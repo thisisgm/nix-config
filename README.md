@@ -36,7 +36,7 @@ just rollback  # revert to the previous generation
 
 ## Bootstrap (fresh machine)
 1. Install [Determinate Nix](https://determinate.systems/) + 1Password (enable its SSH agent + CLI integration); sign into the App Store; turn on FileVault.
-2. `git clone https://github.com/thisisgm/nix-config.git ~/nix-config && cd ~/nix-config`
+2. `git clone https://github.com/thisisgm/nix-darwin-config.git ~/nix-darwin-config && cd ~/nix-darwin-config`
 3. Adopt any already-installed GUI apps into brew to avoid collisions: `brew install --cask --adopt google-chrome slack …`
 4. First switch: `sudo nix run nix-darwin -- switch --flake .#macbookair` (renames host, installs everything). `just switch` thereafter.
 5. Put machine-local SSH hosts in `~/.ssh/config.local` (gitignored).

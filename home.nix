@@ -124,7 +124,7 @@
   # Nicer rebuilds: diff-preview + confirm before activating.
   programs.nh = {
     enable = true;
-    flake = "/Users/gm/nix-config";
+    flake = "/Users/gm/nix-darwin-config";
   };
 
   # Fast cached per-project dev environments.
@@ -156,7 +156,7 @@
 
   # nvim (LazyVim): out-of-store symlink so it stays editable and lazy.nvim can write lazy-lock.json.
   xdg.configFile."nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/dotfiles/nvim";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-darwin-config/dotfiles/nvim";
 
   # Local verification of my ssh-signed commits.
   home.file.".config/git/allowed_signers".text =
