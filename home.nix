@@ -109,15 +109,11 @@
       user.email = "gianmarcomorales@icloud.com";
       init.defaultBranch = "main";
       gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.config/git/allowed_signers";
-      # gh credential helper, PATH-relative; empty entry resets inherited helpers.
-      credential."https://github.com".helper = [
-        ""
-        "!gh auth git-credential"
-      ];
-      credential."https://gist.github.com".helper = [
-        ""
-        "!gh auth git-credential"
-      ];
+      # Pushes to GitHub go over SSH via the 1Password agent (no https token
+      # helper). Fetches keep anonymous https so plugin managers still work
+      # with 1Password locked; private repos clone via ssh:// (gh uses ssh).
+      url."ssh://git@github.com/".pushInsteadOf = "https://github.com/";
+      url."ssh://git@gist.github.com/".pushInsteadOf = "https://gist.github.com/";
     };
   };
 
