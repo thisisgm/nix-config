@@ -12,7 +12,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Determinate Nix module: manages the daemon, caches, and GC.
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+    # Pinned exact; bump deliberately (a semver range would float on lock updates).
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/=3.21.2";
   };
 
   outputs =
@@ -53,7 +54,7 @@
         pkgs.writeShellApplication {
           name = "fmt";
           runtimeInputs = [ pkgs.nixfmt-rfc-style ];
-          text = "find . -name '*.nix' -not -path './.git/*' -exec nixfmt {} +";
+          text = ''find . -name '*.nix' -not -path './.git/*' -exec nixfmt "$@" {} +'';
         };
     };
 }
