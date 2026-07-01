@@ -37,6 +37,13 @@
     reattach = true;
   };
 
+  # Global hotkey daemon. Cmd+Alt+S fires the 1Password Touch-ID sudo autofill
+  # for Ghostty (script from home.nix; 1Password item ref is machine-local).
+  services.skhd = {
+    enable = true;
+    skhdConfig = "cmd + alt - s : /Users/gm/.local/bin/ghostty-sudo-fill";
+  };
+
   fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ]; # system-wide so GUI apps see it
 
   system.defaults = {

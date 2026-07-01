@@ -154,6 +154,13 @@
     ./dotfiles/ghostty/config;
   xdg.configFile."fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
 
+  # Touch-ID 1Password sudo autofill for Ghostty (bound to a hotkey by skhd in darwin.nix).
+  # The 1Password item ref stays machine-local in ~/.config/ghostty-sudo-fill.env.
+  home.file.".local/bin/ghostty-sudo-fill" = {
+    source = ./dotfiles/ghostty-sudo-fill.sh;
+    executable = true;
+  };
+
   # nvim (LazyVim): out-of-store symlink so it stays editable and lazy.nvim can write lazy-lock.json.
   xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-darwin-config/dotfiles/nvim";
