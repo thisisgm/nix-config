@@ -1,5 +1,7 @@
 # macbookair: declarative macOS config
 
+[![build](https://github.com/thisisgm/nix-darwin-config/actions/workflows/build.yml/badge.svg)](https://github.com/thisisgm/nix-darwin-config/actions/workflows/build.yml)
+
 My entire Mac, reproducible from one repo: **nix-darwin + home-manager + flakes** on
 **Determinate Nix**, pinned to stable **26.05**. Nix owns CLI tools, dotfiles, and macOS
 settings; Homebrew (driven by nix-darwin) installs GUI casks + Mac App Store apps;
@@ -13,7 +15,7 @@ settings; Homebrew (driven by nix-darwin) installs GUI casks + Mac App Store app
 - **Signed, verified commits** with the 1Password SSH key.
 - **Declarative macOS:** Dock, Finder, keyboard, fonts, screenshots, Touch-ID-for-sudo (works in tmux).
 - **Controlled updates:** versions pinned in `flake.lock`; a weekly GitHub Action opens lockfile-bump PRs; GC and Nix upgrades are automatic (Determinate).
-- **CI build-check:** every push and pull request runs `nix flake check` + a full `darwin build` on GitHub Actions, so changes (and those lockfile PRs) are proven to build before they reach the machine.
+- **CI build-check:** every push and pull request runs `nix flake check`, a formatting check, and a full `darwin build` on GitHub Actions, so changes (and those lockfile PRs) are proven to build before they reach the machine. A gitleaks job scans every push for leaked secrets (a manual workflow run scans the whole history).
 
 ## Layout
 | File | Owns |
